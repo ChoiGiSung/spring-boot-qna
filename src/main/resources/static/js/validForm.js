@@ -8,12 +8,7 @@ function validate() {
             return;
         }
     }
+    setTimeout(10);
     document.question.submit();
-
-}
-
-function submitCheck()
-{
-    setTimeout(1000);
 
 }
