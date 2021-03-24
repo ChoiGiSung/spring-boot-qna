@@ -1,4 +1,3 @@
-var isRun = false;
 function validate() {
     getInput = document.question.getElementsByTagName("input");
 
@@ -9,10 +8,5 @@ function validate() {
             return;
         }
     }
-
-    if(isRun == true) { return; } isRun = true;
-
     document.question.submit();
-    isRun  = false;
-
 }

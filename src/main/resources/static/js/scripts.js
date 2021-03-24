@@ -23,6 +23,7 @@ function addAnswer(e){
 
 function deleteAnswer(e){
     e.preventDefault();
+    if(isRun == true) { return; } isRun = true;
 
     var deleteBtn = $(this);
     var url = deleteBtn.attr("href");
@@ -37,6 +38,7 @@ function deleteAnswer(e){
             if(data == "true"){
                 console.log("success");
                 deleteBtn.closest("article").remove();
+                isRun = true;
             }
         }
     });
@@ -50,12 +52,12 @@ function onError(request, error){
 
 function onSuccess(data, status){
     console.log(data);
+    isRun  = false;
     var answerTemplate = $("#answerTemplate").html();
     var template = answerTemplate.format(data.writerUserId, data.formatCreateDateTime, data.contents, data.questionId, data.id);
      $(".qna-comment-slipp-articles").prepend(template);
 
      $(".answer-write textarea").val("");
-     isRun  = false;
 
 }
 
