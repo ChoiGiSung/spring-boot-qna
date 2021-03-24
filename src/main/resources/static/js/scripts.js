@@ -1,8 +1,13 @@
 $(".answer-write button[type=submit]" ).click(addAnswer);
 $(document).on('click', '.link-delete-ATag-article', deleteAnswer);
 
+
+var isRun = false;
 function addAnswer(e){
     e.preventDefault();
+
+    if(isRun == true) { return; } isRun = true;
+
     var queryString = $(".answer-write").serialize();
     var url = $(".answer-write").attr("action");
 
@@ -50,6 +55,7 @@ function onSuccess(data, status){
      $(".qna-comment-slipp-articles").prepend(template);
 
      $(".answer-write textarea").val("");
+     isRun  = false;
 
 }
 
