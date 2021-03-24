@@ -1,4 +1,12 @@
+var validateFlag = false;
 function validate() {
+
+    if(validateFlag == true) {
+        return;
+    }
+
+    validateFlag = true;
+
     getInput = document.question.getElementsByTagName("input");
 
     for (var i = 0; i < getInput.length; i++) {
@@ -8,5 +16,6 @@ function validate() {
             return;
         }
     }
+    validateFlag = false;
     document.question.submit();
 }

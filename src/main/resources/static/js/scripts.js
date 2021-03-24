@@ -2,11 +2,12 @@ $(".answer-write button[type=submit]" ).click(addAnswer);
 $(document).on('click', '.link-delete-ATag-article', deleteAnswer);
 
 
-var isRun = false;
+var addFlag = false;
+var deleteFlag =false;
 function addAnswer(e){
     e.preventDefault();
 
-    if(isRun == true) { return; } isRun = true;
+    if(addFlag == true) { return; } addFlag = true;
 
     var queryString = $(".answer-write").serialize();
     var url = $(".answer-write").attr("action");
@@ -23,7 +24,7 @@ function addAnswer(e){
 
 function deleteAnswer(e){
     e.preventDefault();
-    if(isRun == true) { return; } isRun = true;
+    if(deleteFlag == true) { return; } deleteFlag = true;
 
     var deleteBtn = $(this);
     var url = deleteBtn.attr("href");
@@ -38,7 +39,7 @@ function deleteAnswer(e){
             if(data == "true"){
                 console.log("success");
                 deleteBtn.closest("article").remove();
-                isRun = true;
+                deleteFlag = true;
             }
         }
     });
@@ -52,7 +53,7 @@ function onError(request, error){
 
 function onSuccess(data, status){
     console.log(data);
-    isRun  = false;
+    addFlag  = false;
     var answerTemplate = $("#answerTemplate").html();
     var template = answerTemplate.format(data.writerUserId, data.formatCreateDateTime, data.contents, data.questionId, data.id);
      $(".qna-comment-slipp-articles").prepend(template);
