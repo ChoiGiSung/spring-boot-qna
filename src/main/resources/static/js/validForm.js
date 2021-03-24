@@ -9,14 +9,11 @@ function validate() {
         }
     }
     document.question.submit();
+
 }
 
-
-var blnClickstop= false;
 function submitCheck()
 {
-    if(blnClickstop== true)
-    { alert("이미 클릭했습니다."); return false; }
-    blnClickstop= true;
+    setTimeout(1000);
 
 }
